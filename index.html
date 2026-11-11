@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <!-- Actividad Fundamental 07 - Programacion Web -->
+  <!-- Alumno: Juan Carlos Cortez Rico -->
+  <!-- Matricula: 2067285 -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="AF07 Becas FIME UANL">
+  <meta name="author" content="Juan Carlos Cortez Rico">
+  <title>Actividad Fundamental 07</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      background-color: #f4f7f5;
+      color: #14324a;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    a {
+      color: #1f7a4c;
+    }
+
+    header {
+      background: #ffffff;
+      border-bottom: 3px solid #1f7a4c;
+      padding: 0;
+    }
+
+    .barra-superior {
+      background: #14324a;
+      color: #d7e6f0;
+      font-size: 0.8rem;
+      padding: 0.4rem 1.5rem;
+      text-align: center;
+      letter-spacing: 0.03em;
+    }
+
+    nav {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      max-width: 1400px;
+      margin: 0 auto;
+      gap: 1rem 1.5rem;
+      padding: 0.9rem 1.5rem;
+    }
+
+    .marca-portal {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-fime-header {
+      width: 64px;
+      height: 64px;
+      background-color: #f3f7f4;
+      border: 2px solid #1f7a4c;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4px;
+      overflow: hidden;
+    }
+
+    .logo-fime-header img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .titulo-marca h1 {
+      font-size: 1.25rem;
+      color: #14324a;
+      margin-bottom: 3px;
+    }
+
+    .titulo-marca p {
+      font-size: 0.85rem;
+      color: #4d6270;
+      font-weight: bold;
+    }
+
+    .nav-links {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: #14324a;
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: bold;
+      padding: 0.35rem 0.2rem;
+      border-bottom: 2px solid transparent;
+    }
+
+    .nav-links a:hover {
+      border-bottom-color: #1f7a4c;
+      color: #1f7a4c;
+    }
+
+    .btn-inicio-top {
+      display: inline-block;
+      padding: 0.55rem 1rem;
+      background-color: #1f7a4c;
+      color: #ffffff;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 0.85rem;
+      border: 2px solid #1f7a4c;
+    }
+
+    .btn-inicio-top:hover {
+      background-color: #165c39;
+      border-color: #165c39;
+    }
+
+    .seccion-hero {
+      text-align: center;
+      padding: 2.2rem 1.5rem 1.4rem;
+      background: #ffffff;
+      border-bottom: 1px solid #c9d6ce;
+    }
+
+    .seccion-hero h2 {
+      font-size: 2rem;
+      color: #14324a;
+      margin-bottom: 8px;
+    }
+
+    .seccion-hero p {
+      color: #4d6270;
+      font-size: 1rem;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    main {
+      padding: 1.5rem 1.5rem 2.5rem;
+      max-width: 1400px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .fila-becas {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 22px;
+      width: 100%;
+      margin-bottom: 2rem;
+    }
+
+    .tarjeta-beca {
+      flex: 1 1 250px;
+      max-width: 320px;
+      background: #ffffff;
+      border-radius: 10px;
+      border: 2px solid #c9d6ce;
+      padding: 1.8rem 1.3rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(20, 50, 74, 0.08);
+      position: relative;
+      transition: 0.2s;
+    }
+
+    .tarjeta-beca:hover {
+      transform: translateY(-4px);
+      border-color: #1f7a4c;
+    }
+
+    .etiqueta-tipo {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      background: #f3f7f4;
+      color: #1f7a4c;
+      font-size: 0.75rem;
+      font-weight: bold;
+      padding: 4px 10px;
+      border-radius: 6px;
+      border: 1px solid #c9d6ce;
+    }
+
+    .contenedor-imagen {
+      width: 100%;
+      height: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 18px 0 12px;
+      background: #f3f7f4;
+      border: 1px solid #c9d6ce;
+      border-radius: 8px;
+      padding: 10px;
+    }
+
+    .contenedor-imagen img {
+      max-width: 170px;
+      max-height: 100px;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .info-beca h3 {
+      font-size: 1.2rem;
+      color: #14324a;
+      margin-bottom: 10px;
+    }
+
+    .info-beca p {
+      font-size: 0.9rem;
+      color: #4d6270;
+      line-height: 1.4;
+      margin-bottom: 18px;
+      min-height: 54px;
+    }
+
+    .acciones-beca {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      width: 100%;
+    }
+
+    .btn-alerta {
+      width: 100%;
+      padding: 11px;
+      background: #1f7a4c;
+      color: #ffffff;
+      border: 2px solid #1f7a4c;
+      border-radius: 6px;
+      font-weight: bold;
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+
+    .btn-alerta:hover {
+      background: #165c39;
+      border-color: #165c39;
+    }
+
+    .btn-enlace {
+      width: 100%;
+      padding: 10px;
+      background-color: #ffffff;
+      color: #14324a;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: bold;
+      font-size: 0.88rem;
+      border: 2px solid #14324a;
+      display: block;
+    }
+
+    .btn-enlace:hover {
+      background-color: #f3f7f4;
+      color: #1f7a4c;
+      border-color: #1f7a4c;
+    }
+
+    .bloque-extra {
+      background: #ffffff;
+      border: 2px solid #c9d6ce;
+      border-top: 3px solid #1f7a4c;
+      border-radius: 10px;
+      padding: 1.3rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .bloque-extra h2 {
+      color: #14324a;
+      font-size: 1.25rem;
+      margin-bottom: 0.7rem;
+    }
+
+    .bloque-extra h3 {
+      font-size: 1rem;
+      margin: 0.8rem 0 0.4rem;
+      color: #14324a;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.92rem;
+    }
+
+    caption {
+      caption-side: bottom;
+      padding-top: 0.5rem;
+      color: #4d6270;
+      text-align: left;
+      font-size: 0.85rem;
+    }
+
+    th, td {
+      border: 1px solid #c9d6ce;
+      padding: 0.55rem 0.7rem;
+      text-align: left;
+    }
+
+    thead th {
+      background: #14324a;
+      color: #fff;
+    }
+
+    tbody tr:nth-child(even) {
+      background: #f3f7f4;
+    }
+
+    kbd {
+      background: #f3f7f4;
+      border: 1px solid #c9d6ce;
+      border-radius: 4px;
+      padding: 0.1rem 0.35rem;
+      font-size: 0.85rem;
+    }
+
+    .btn-subir {
+      position: fixed;
+      right: 18px;
+      bottom: 22px;
+      width: 46px;
+      height: 46px;
+      border-radius: 8px;
+      background: #14324a;
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid #1f7a4c;
+      box-shadow: 0 6px 16px rgba(20, 50, 74, 0.25);
+      z-index: 100;
+    }
+
+    .btn-subir:hover {
+      background: #1f7a4c;
+    }
+
+    .btn-subir span {
+      line-height: 1;
+    }
+
+    footer {
+      margin-top: auto;
+      background: #f4f7f5;
+      border-top: 3px solid #14324a;
+      color: #14324a;
+      padding: 1.5rem 1.5rem 1.2rem;
+    }
+
+    .pie-contenido {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 1rem 2rem;
+      align-items: start;
+    }
+
+    .pie-contenido h2 {
+      font-size: 1.05rem;
+      margin-bottom: 0.35rem;
+      color: #14324a;
+    }
+
+    .pie-contenido p {
+      font-size: 0.9rem;
+      color: #4d6270;
+      font-weight: normal;
+    }
+
+    address {
+      font-style: normal;
+      font-weight: normal;
+      font-size: 0.88rem;
+      color: #4d6270;
+      line-height: 1.6;
+    }
+
+    address a {
+      color: #1f7a4c;
+      font-weight: bold;
+    }
+
+    .pie-nota {
+      grid-column: 1 / -1;
+      border-top: 1px solid #c9d6ce;
+      padding-top: 0.75rem;
+      margin-top: 0.3rem;
+      font-size: 0.8rem;
+      color: #6a7b86;
+    }
+
+    @media (max-width: 800px) {
+      nav {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-links {
+        justify-content: flex-start;
+      }
+
+      .pie-contenido {
+        grid-template-columns: 1fr;
+      }
+
+      .titulo-marca h1 { font-size: 1.1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="barra-superior">FIME UANL · Programa de Becas</div>
+    <nav>
+      <div class="marca-portal">
+        <div class="logo-fime-header">
+          <img src="img/fime.png" alt="Logo FIME" width="48" height="48">
+        </div>
+        <div class="titulo-marca">
+          <h1>AF07 · Becas disponibles</h1>
+          <p>Juan Carlos Cortez Rico · 2067285</p>
+        </div>
+      </div>
+      <div class="nav-links">
+        <a href="#inicio">Inicio</a>
+        <a href="#comparativa">Comparativa</a>
+        <a href="https://m3nny75.github.io/Pia-Progra-web/" class="btn-inicio-top">Ir al portafolio</a>
+      </div>
+    </nav>
+  </header>
+
+  <section class="seccion-hero" id="inicio">
+    <h2>Oportunidades de Becas</h2>
+    <p>
+      Selecciona una opcion para revisar los detalles esenciales o consulta las
+      convocatorias directamente en sus portales oficiales. Incluye apoyos de
+      <strong>gobierno</strong>, <em>sector privado</em> y <strong>UANL</strong>.
+    </p>
+  </section>
+
+  <main>
+    <section class="fila-becas" aria-label="Cuatro becas disponibles">
+
+      <article class="tarjeta-beca">
+        <span class="etiqueta-tipo">Privado</span>
+        <figure class="contenedor-imagen">
+          <img src="img/santander.png" alt="Logo Santander" width="170" height="90">
+        </figure>
+        <div class="info-beca">
+          <h3>Beca Santander</h3>
+          <p>Apoyo de manutencion unico para estudiantes de nivel superior a traves de Open Academy.</p>
+        </div>
+        <div class="acciones-beca">
+          <button
+            type="button"
+            class="btn-alerta"
+            onclick="lanzarAlerta('Beca Santander', 'Requisitos:\n- Ser alumno de educacion superior\n- Registrarte en Santander Open Academy\n- Completar el curso requisito de la convocatoria\n- Aceptar la beca en el plazo indicado')">
+            Revisar Requisitos
+          </button>
+          <a
+            class="btn-enlace"
+            href="https://www.santanderopenacademy.com/es/index.html"
+            target="_blank"
+            rel="noopener noreferrer">
+            Ir al Portal Oficial
+          </a>
+        </div>
+      </article>
+
+      <article class="tarjeta-beca">
+        <span class="etiqueta-tipo">Gobierno NL</span>
+        <figure class="contenedor-imagen">
+          <img src="img/gobierno.svg" alt="Logo Gobierno de Nuevo Leon" width="170" height="90">
+        </figure>
+        <div class="info-beca">
+          <h3>Centro Estatal de Becas</h3>
+          <p>Apoyo economico estatal para alumnos de universidades publicas de Nuevo Leon.</p>
+        </div>
+        <div class="acciones-beca">
+          <button
+            type="button"
+            class="btn-alerta"
+            onclick="lanzarAlerta('Centro Estatal de Becas', 'Requisitos:\n- Estar inscrito en universidad publica de NL\n- No tener materias pendientes\n- Cumplir el tope de ingreso familiar de la convocatoria\n- Entregar INE, domicilio e ingresos')">
+            Revisar Requisitos
+          </button>
+          <a
+            class="btn-enlace"
+            href="https://www.nl.gob.mx"
+            target="_blank"
+            rel="noopener noreferrer">
+            Ir al Portal Oficial
+          </a>
+        </div>
+      </article>
+
+      <article class="tarjeta-beca">
+        <span class="etiqueta-tipo">Rectoria UANL</span>
+        <figure class="contenedor-imagen">
+          <img src="img/rectoria.png" alt="Escudo UANL Rectoria" width="110" height="110">
+        </figure>
+        <div class="info-beca">
+          <h3>Beca Rectoria</h3>
+          <p>Exencion de cuota escolar de Rectoria UANL por bajos recursos para licenciatura.</p>
+        </div>
+        <div class="acciones-beca">
+          <button
+            type="button"
+            class="btn-alerta"
+            onclick="lanzarAlerta('Beca de Escasos Recursos', 'Requisitos:\n- Solicitud en el apartado de Becas de SIASE\n- Acta de nacimiento y comprobante de domicilio\n- Comprobantes de ingresos familiares\n- No pagar el recibo hasta terminar el tramite')">
+            Revisar Requisitos
+          </button>
+          <a
+            class="btn-enlace"
+            href="https://www.uanl.mx/tramites/becas-de-escasos-recursos/"
+            target="_blank"
+            rel="noopener noreferrer">
+            Ir al Portal Oficial
+          </a>
+        </div>
+      </article>
+
+      <article class="tarjeta-beca">
+        <span class="etiqueta-tipo">Fundacion UANL</span>
+        <figure class="contenedor-imagen">
+          <img src="img/fundacion.png" alt="Logo Fundacion UANL" width="170" height="90">
+        </figure>
+        <div class="info-beca">
+          <h3>Fundacion UANL</h3>
+          <p>Programas de sostenimiento, transporte, ingles y movilidad para la comunidad Tigre.</p>
+        </div>
+        <div class="acciones-beca">
+          <button
+            type="button"
+            class="btn-alerta"
+            onclick="lanzarAlerta('Fundacion UANL', 'Requisitos:\n- Ser alumno de licenciatura UANL\n- Promedio minimo de 85\n- Carga completa y sin tercera oportunidad\n- Perfil de escasos recursos validado')">
+            Revisar Requisitos
+          </button>
+          <a
+            class="btn-enlace"
+            href="https://www.uanl.mx/tramites/becas-fundacion-uanl/"
+            target="_blank"
+            rel="noopener noreferrer">
+            Ir al Portal Oficial
+          </a>
+        </div>
+      </article>
+    </section>
+
+    <aside class="bloque-extra" id="comparativa">
+      <h2>Comparativa rapida</h2>
+      <table>
+        <caption>Resumen de las 4 becas seleccionadas para FIME</caption>
+        <thead>
+          <tr>
+            <th scope="col">Beca</th>
+            <th scope="col">Origen</th>
+            <th scope="col">Apoyo</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Santander</th>
+            <td>Privado</td>
+            <td>Pago unico de manutencion</td>
+          </tr>
+          <tr>
+            <th scope="row">Centro Estatal</th>
+            <td>Gobierno NL</td>
+            <td>Apoyo economico estatal</td>
+          </tr>
+          <tr>
+            <th scope="row">Rectoria</th>
+            <td>UANL</td>
+            <td>Exencion de cuota</td>
+          </tr>
+          <tr>
+            <th scope="row">Fundacion UANL</th>
+            <td>Fundacion</td>
+            <td>Hasta <data value="1500">$1,500</data> mensuales</td>
+          </tr>
+        </tbody>
+      </table>
+      <p style="margin-top:0.7rem;color:#555;font-size:0.9rem;">
+        Tip: si obtienes beca de Rectoria con claves <kbd>01</kbd>, <kbd>02</kbd>, <kbd>25</kbd> o <kbd>75</kbd>,
+        puedes pedir apoyo interno en <a href="https://www.fime.uanl.mx/tramites/becas/" target="_blank" rel="noopener noreferrer">FIME</a>.
+      </p>
+    </aside>
+
+  </main>
+
+  <a href="#inicio" class="btn-subir" title="Subir al inicio" aria-label="Subir al inicio">
+    <span>↑</span>
+  </a>
+
+  <footer>
+    <div class="pie-contenido">
+      <div>
+        <h2>AF07 · Programacion Web</h2>
+        <p>Pagina informativa sobre becas de gobierno, sector privado y UANL para estudiantes de FIME.</p>
+      </div>
+      <address>
+        Alumno: Juan Carlos Cortez Rico<br>
+        Matricula: 2067285<br>
+        Facultad:
+        <a href="https://www.fime.uanl.mx/" target="_blank" rel="noopener noreferrer">FIME UANL</a>
+      </address>
+    </div>
+  </footer>
+
+  <script>
+    function lanzarAlerta(titulo, mensaje) {
+      window.alert(titulo + "\n\n" + mensaje);
+    }
+  </script>
+</body>
+</html>
