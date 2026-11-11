@@ -1,9 +1,6 @@
 # AF07 Becas FIME
 
-Actividad Fundamental 07 — página informativa de becas para estudiantes de FIME UANL.
-
-**Alumno:** Juan Carlos Cortez Rico  
-**Matrícula:** 2067285
+Actividad Fundamental 07
 
 ## Cómo verla
 
